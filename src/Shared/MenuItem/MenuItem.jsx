@@ -5,8 +5,8 @@ const MenuItem = ({ item }) => {
 //   console.log(item);
   return (
     <div className="flex space-x-4">
-      <img style={{borderRadius: "0px 200px 200px 200px"}} className=" w-[118px]" src={img} alt="" />
-      {/* <img className="rounded-[200px] rounded-ss-none w-[118px]" src={image} alt="" /> */}
+      {/* <img style={{borderRadius: "0px 200px 200px 200px"}} className=" w-[118px]" src={img} alt="" /> */}
+      <img className="rounded-[200px] rounded-ss-none w-[118px]" src={image} alt="" />
       <div>
         <h3 className="text-xl uppercase">{name} ------------------</h3>
         <p>{recipe}</p>
