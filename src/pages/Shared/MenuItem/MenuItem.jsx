@@ -1,4 +1,4 @@
-import img from '../../assets/reservation/wood-grain-pattern-gray1x.png'
+// import img from '../../../assets/reservation/wood-grain-pattern-gray1x.png';
 
 const MenuItem = ({ item }) => {
   const { name, image, price, recipe } = item;
