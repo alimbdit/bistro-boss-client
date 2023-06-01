@@ -5,7 +5,7 @@ import useAuth from "./useAuth";
 
 const useCart = () => {
   const { user, loading } = useAuth();
-  console.log(user)
+  // console.log(user)
   // const token = localStorage.getItem("access-token");
   const [axiosSecure] = useAxiosSecure();
   const { refetch, data: cart = [] } = useQuery({

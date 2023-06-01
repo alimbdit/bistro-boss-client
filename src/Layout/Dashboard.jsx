@@ -22,13 +22,14 @@ const Dashboard = () => {
     <div className="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content p-5">
-        <Outlet></Outlet>
-        <label
+      <label
           htmlFor="my-drawer-2"
           className="btn btn-primary drawer-button lg:hidden"
         >
           Open drawer
         </label>
+        <Outlet></Outlet>
+        
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
@@ -41,13 +42,13 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/reservation">
+                <NavLink to="/dashboard/addItem">
                   <FaUtensils className="text-xl"></FaUtensils>{" "}
-                  Add Items
+                  Add an Item
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/history">
+                <NavLink to="/dashboard/manageItems">
                   <TfiMenuAlt className="text-xl"></TfiMenuAlt> Manage Items
                 </NavLink>
               </li>
@@ -58,7 +59,7 @@ const Dashboard = () => {
               </li>
               
               <li>
-                <NavLink to="/dashboard/allusers">
+                <NavLink to="/dashboard/allUsers">
                   <FaUsers className="text-xl"></FaUsers> All Users
                 </NavLink>
               </li>
@@ -83,7 +84,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/mycart">
+                <NavLink to="/dashboard/myCart">
                   <HiShoppingCart className="text-2xl"></HiShoppingCart> My Cart
                   <span className="badge badge-secondary">
                     +{cart?.length || 0}
