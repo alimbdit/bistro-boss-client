@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import chef from "../../../assets/home/chef-service.jpg";
 
 const ChefService = () => {
@@ -8,6 +9,7 @@ const ChefService = () => {
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
   };
+  
 
   return (
     <div className="my-24">
@@ -15,6 +17,7 @@ const ChefService = () => {
         <img src={chef} alt="" />
 
       </div> */}
+      
       <div className="text-center   " style={backgroundImageStyle}>
         <div className="bg-neutral-800 bg-opacity-40 p-28">
           <div className="bg-white py-24 px-40">

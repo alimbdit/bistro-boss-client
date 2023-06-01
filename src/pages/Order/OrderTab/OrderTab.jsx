@@ -7,6 +7,7 @@ import { Pagination } from "swiper";
 
 import FoodCard from "../../../components/FoodCard/FoodCard";
 
+// TODO: pagination here
 
 const OrderTab = ({items}) => {
 

@@ -4,43 +4,57 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
-    const {createUser, updateUserProfile} = useContext(AuthContext);
-    const location = useLocation();
-    const navigate = useNavigate();
-    const from = location.state?.from?.pathname || "/";
-    // console.log(from)
-    // console.log(location)
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
+  // console.log(from)
+  // console.log(location)
   const {
     register,
     handleSubmit,
     reset,
-   
+
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
     console.log(data);
     createUser(data.email, data.password)
-    .then(result => {
-        console.log(result.user)
+      .then((result) => {
+        console.log(result.user);
         updateUserProfile(data.name, data.photoURL)
-        .then(() => {
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'User Profile Update Successful',
-            showConfirmButton: false,
-            timer: 1500
+          .then(() => {
+            const saveUser = { name: data.name, email: data.email };
+            fetch("http://localhost:5000/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(saveUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data)
+                if (data.insertedId) {
+                  Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "User Profile Update Successful",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  navigate(from, { replace: true });
+                  reset();
+                }
+              });
           })
-          navigate(from, { replace: true });
-          reset();
-        })
-        .catch(error => console.log(error.message))
-       
-    })
-    .catch(error => console.log(error.message))
-    
+          .catch((error) => console.log(error.message));
+      })
+      .catch((error) => console.log(error.message));
   };
 
   return (
@@ -81,7 +95,6 @@ const SignUp = () => {
                 </label>
                 <input
                   type="text"
-                 
                   {...register("photoURL", { required: true })}
                   placeholder="PhotoURL"
                   className="input input-bordered"
@@ -158,7 +171,9 @@ const SignUp = () => {
                 Already have an account? <Link to="/login">Login</Link>
               </small>
             </p>
+            <SocialLogin></SocialLogin>
           </div>
+          
         </div>
       </div>
     </>

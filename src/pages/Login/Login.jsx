@@ -9,6 +9,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -16,8 +17,8 @@ const Login = () => {
   let location = useLocation();
 
   let from = location.state?.from?.pathname || "/";
-  console.log(location)
-  console.log(from)
+  // console.log(location)
+  // console.log(from)
 
   const [disabled, setDisabled] = useState(true);
 
@@ -118,9 +119,13 @@ const Login = () => {
                
               </div>
 
+
+{/* ! TODO: Make button disabled for captcha */}
+
+
               <div className="form-control mt-6">
                 <input
-                  disabled={disabled}
+                  disabled={false}
                   className="btn btn-primary"
                   type="submit"
                   value="Login"
@@ -132,6 +137,7 @@ const Login = () => {
                 New in Here? <Link to="/signup" state={{ from: location.state?.from }} replace>create an account</Link>
               </small>
             </p>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>
@@ -140,3 +146,4 @@ const Login = () => {
 };
 
 export default Login;
+
