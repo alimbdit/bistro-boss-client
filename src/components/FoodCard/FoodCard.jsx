@@ -16,7 +16,7 @@ const FoodCard = ({ item }) => {
     console.log(item);
     if(user && user.email){
       const orderItem = {menuItemId: _id, name, image, price, email:user.email }
-      fetch('http://localhost:5000/carts', {
+      fetch(`${import.meta.env.VITE_BASE_URL}/carts`, {
         method: "POST",
         headers: {
           "content-type" : "application/json",

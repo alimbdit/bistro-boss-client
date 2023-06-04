@@ -12,7 +12,7 @@ const AllUsers = () => {
   });
 
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+    fetch(`${import.meta.env.VITE_BASE_URL}/users/admin/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -41,7 +41,7 @@ const AllUsers = () => {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-            fetch(`http://localhost:5000/users/delete/${user._id}`, {
+            fetch(`${import.meta.env.VITE_BASE_URL}/users/delete/${user._id}`, {
                 method: "DELETE"
             })
             .then(res => res.json())

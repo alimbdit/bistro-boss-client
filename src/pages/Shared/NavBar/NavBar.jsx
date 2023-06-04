@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { RiShoppingCartFill } from 'react-icons/ri';
 import useCart from "../../../hooks/useCart";
+import useAdmin from "../../../hooks/useAdmin";
+
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [cart] = useCart()
+  const [cart] = useCart();
+  const [isAdmin] = useAdmin()
 
   const handleLogOut = () => {
     logOut()
@@ -17,7 +20,7 @@ const NavBar = () => {
   const navOptions = (
     <>
       {" "}
-      <li>
+      <li className="focus:bg-white">
         <Link to="/">Home</Link>
       </li>
       <li>
@@ -28,7 +31,7 @@ const NavBar = () => {
       </li>
       <span>{user?.displayName}</span>
       <li>
-        <Link to="/secret">Secret</Link>
+        <Link to={isAdmin ? "/dashboard/adminHome" : "/dashboard/userHome"}>Dashboard</Link>
       </li>
       <li>
         <Link to="/dashboard/mycart">
@@ -77,7 +80,7 @@ const NavBar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 "
             >
               {navOptions}
             </ul>
@@ -85,7 +88,7 @@ const NavBar = () => {
           <a className="btn btn-ghost normal-case text-xl">Bistro Boss</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navOptions}</ul>
+          <ul className="menu menu-horizontal focus:bg-white px-1">{navOptions}</ul>
         </div>
         <div className="navbar-end">
           <a className="btn">Get started</a>

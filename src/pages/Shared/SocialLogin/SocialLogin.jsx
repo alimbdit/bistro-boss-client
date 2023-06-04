@@ -17,7 +17,7 @@ const SocialLogin = () => {
           const loggedUser = result.user;
         const saveUser = { name: loggedUser.displayName, email: loggedUser.email };
         console.log(loggedUser);
-        fetch("http://localhost:5000/users", {
+        fetch(`${import.meta.env.VITE_BASE_URL}/users`, {
             method: "POST",
             headers: {
               "content-type": "application/json",
